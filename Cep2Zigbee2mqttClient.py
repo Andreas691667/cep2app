@@ -126,17 +126,18 @@ class Cep2Zigbee2mqttClient:
                  on_message_clbk: Callable[[Optional[Cep2Zigbee2mqttMessage]], None],
                  port: int = 1883,
                  topics: List[str] = [ROOT_TOPIC]):
-        """ Class initializer where the MQTT broker's host and port can be set, the list of topics
-        to subscribe and a callback to handle events from zigbee2mqtt.
+        
+        # Class initializer where the MQTT broker's host and port can be set, the list of topics
+        # to subscribe and a callback to handle events from zigbee2mqtt.
 
-        Args:
-            host (str): string with the hostname, or IP address, of the MQTT broker.
-            on_message_clbk (Callable[[Zigbee2mqttMessage], None]): a function that is called when
-                a message is received from zigbee2mqtt. This returns None if the 
-            port (int): network port of the MQTT broker. Defaults to 1883.
-            topics (List[str], optional): a list of topics that the client will subscribe to.
-                Defaults to ["zigbee2mqtt/#"].
-        """
+        # Args:
+        #     host (str): string with the hostname, or IP address, of the MQTT broker.
+        #     on_message_clbk (Callable[[Zigbee2mqttMessage], None]): a function that is called when
+        #         a message is received from zigbee2mqtt. This returns None if the 
+        #     port (int): network port of the MQTT broker. Defaults to 1883.
+        #     topics (List[str], optional): a list of topics that the client will subscribe to.
+        #         Defaults to ["zigbee2mqtt/#"].
+        
         self.__client = MqttClient()
         self.__client.on_connect = self.__on_connect
         self.__client.on_disconnect = self.__on_disconnect
@@ -152,8 +153,8 @@ class Cep2Zigbee2mqttClient:
         self.__topics = topics
 
     def connect(self) -> None:
-        """ Connects to the MQTT broker specified in the initializer. This is a blocking function.
-        """
+        # Connects to the MQTT broker specified in the initializer. This is a blocking function.
+        
         # In the client is already connected then stop here.
         if self.__connected:
             return
